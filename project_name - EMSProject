@@ -1,0 +1,119 @@
+project_name - EMSProject
+project_app - Emplyee
+django-admin startproject EMSProject
+python manage.py startapp EmployeeDetails
+
+C:\Users\raj\OneDrive\Desktop\domo>django-admin startproject EMSProject
+
+C:\Users\raj\OneDrive\Desktop\domo>cd EMSProject
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject>python manage.py EmployeeDetails
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject>django-admin startproject EMSProject
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject>python manage.py startapp EmployeeDetails
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject>
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject>cd EmployeeDetails
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\EmployeeDetails>mkdir templates
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\EmployeeDetails>cd templates
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\EmployeeDetails\templates>copy con index.html
+^Z
+        1 file(s) copied.
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\EmployeeDetails\templates>cd..
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\EmployeeDetails>copy con views.py
+^Z
+Overwrite views.py? (Yes/No/All): no
+        0 file(s) copied.
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\EmployeeDetails>copy con urls.py
+^Z
+        1 file(s) copied.
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\EmployeeDetails>copy con forms.py
+^Z
+        1 file(s) copied.
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\EmployeeDetails>cd..
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject>mkdir static
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject>cd mkdir css
+The system cannot find the path specified.
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject>cd static
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static>mkdir css
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static>mkdir js
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static>cd css
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static\css>copy con style.css
+^Z
+        1 file(s) copied.
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static\css>copy con bootstrap.css
+^Z
+        1 file(s) copied.
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static\css>cd..
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static>cd js
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static\js>copy con jquery.js
+^Z
+        1 file(s) copied.
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static\js>copy con bootstrap.js
+^Z
+        1 file(s) copied.
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static\js>cd..
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject\static>cd..
+
+C:\Users\raj\OneDrive\Desktop\domo\EMSProject>python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 17 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+January 22, 2020 - 20:46:27
+Django version 2.2.1, using settings 'EMSProject.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+
+
+http://127.0.0.1:8000/
+
+model------------------------------------------
+models.py # we are make a models for store in data
+table name =Employee
+
+ -id =
+ -name =
+ -pan_number =
+ -age =
+ -gender =
+ -email =
+ -city =
+ -action =
+
+GEDNER=(
+(),()
+)
+
+
+
+
+

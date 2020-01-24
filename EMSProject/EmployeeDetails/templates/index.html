@@ -1,0 +1,100 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<br>
+<div class="container">
+
+
+    <h2>All Employee <a href="{% url 'addEmp'%}"  class="btn btn-success float-right">Add Employee</a></h2>
+
+
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="search" class="searchbox" id="id_search" placeholder="Enter Empyee Name" name="sname">
+    </form>
+    <table class="table table-light table-striped table-bordered">
+
+        <thead class="bg-primary text-white">
+        <tr>
+            <th width="2%">#</th>
+            <th>Name</th>
+            <th>Pan Number</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="emp_table">
+        {% for emp in all_employee %}
+        <tr>
+            <th width="2%">{{forloop.counter}}</th>
+            <th>{{emp.name}}</th>
+            <th>{{emp.pan_number}}</th>
+            <th>{{emp.age}}</th>
+            <th>{{emp.gender}}</th>
+            <th>{{emp.email}}</th>
+            <th>{{emp.city}}</th>
+            <th><a href="{% url 'edit_emp' emp.id%}" class="btn btn-info">Edit</a>
+                <a href="{% url 'del_emp' emp.id%}" class="btn btn-danger">Delete</a></th>
+        </tr>
+        {% endfor%}
+
+        <tfoot>
+
+
+        <td colspan="8">
+            {% if all_employee.has_other_pages %}
+            <ul class="pagination">
+                {% if all_employee.has_previous %}
+                <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in all_employee.paginator.page_range %}
+                {% if all_employee.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if all_employee.has_next %}
+                <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </td>
+
+        </td>
+        </tfoot>
+        </tbody>
+
+
+    </table>
+
+    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:80%">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    {% endblock %}

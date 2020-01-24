@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="box">
+
+    <div class="container">
+        <h1 class="text-center">Add New Customer</h1>
+        <div class="customer_box">
+            <form method="post" id="add_customer">
+                {%csrf_token%}
+                {% for field in form %}
+                <div class="col-md-6">
+
+                    <div class="form-group">
+
+                        <label>{{ field.label_tag }}</label>
+                        {{ field }}
+                        {{ field.errors }}
+                        {% if field.help_text %}
+
+
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-lg">Add New Customer</button>
+                        <a href="{% url 'emp'%}"  class="btn btn-info btn-lg">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock%}

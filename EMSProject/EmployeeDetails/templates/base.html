@@ -1,0 +1,219 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>EMS Project </title>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Teko&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+  <script src="{% static 'js/jquery.js'%}"></script>
+  <script src="{% static 'js/bootstrap.js'%}"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+</head>
+<body>
+
+<style>
+  body{
+  font-family: 'Arvo', serif;
+  }
+  .is_invalid{
+  border:solid 1px red;
+  }
+  .is_invalid_text{
+  color: red;
+    float: left;
+    border: 0;
+    padding: 0;
+    position: absolute;
+    list-style: none;
+    left: 5%;
+  }
+  .is_valid{
+  border:solid 1px green;
+  }
+  .box{
+  background: #eeeeee;
+  padding: 10px;
+  }
+
+  .delete{
+  background: #147c82;
+    width: 42%;
+    margin: auto;
+    padding: 20px;
+    color: #fff;
+  }
+  .customer_box{
+    margin-top: 5%;
+    color: #207740;
+    text-transform: uppercase;
+  }
+
+  .box h1{
+      background: #e2dcdc;
+    padding: 6px;
+    border-radius: 5px;
+  }
+  .allCityWrap{
+    position:relative;
+  }
+
+  .citylist{
+    background: #fff;
+    padding: 6px;
+    border-radius: 4px;
+    border-bottom: solid 1px #ddd;
+    cursor:pointer;
+  }
+
+
+  #allCity{
+      position: absolute;
+      width: 95%;
+
+  }
+
+</style>
+{% block content %}
+{% endblock%}
+
+
+<script>
+    $(document).ready(function(){
+        $('input').addClass('form-control');
+        $('select').addClass('form-control');
+        $("#id_city").wrap('<div id="allCityWrap"></div>');
+        $('input').attr('autocomplete','off');
+        $('.errorlist').addClass('is_invalid_text');
+        $("#id_city").after('<div id="allCity"></div>');
+        $(".editdiv #id_age").attr("disabled",true);
+
+
+
+
+
+
+
+
+    $('#id_name').keypress(function (e) {
+        var regex = new RegExp(/^[a-zA-Z\s]+$/);
+        var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        if (regex.test(str)) {
+          $('#id_name').focus();
+        }
+        else {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+
+    function checkPanNumer(){
+
+        var regex = /([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+        var panid =$("#id_pan_number").val().toUpperCase();
+            if (regex.test(panid)) {
+                $("#id_pan_number").css('border','solid 1px green');
+
+            } else {
+               $("#id_pan_number").addClass('is_invalid');
+                return false;
+            }
+    }
+    $('#id_pan_number').change(function () {
+       checkPanNumer();
+
+    });
+
+    $('#id_pan_number').keyup(function () {
+       upper_text =$("#id_pan_number").val().toUpperCase();
+       $("#id_pan_number").val(upper_text);
+
+    });
+
+
+    function ageLimit(){
+        $("id_age").attr('max','100');
+       id_age =$("#id_age").val();
+       limitText=parseInt(id_age);
+
+       if (limitText<1 || limitText>100){
+        $("#id_age").addClass('is_invalid');
+
+       }
+       else{
+        //$("#id_age").css('border','solid 1px green');
+       return false;
+       }
+
+    }
+
+    $('#id_age').keyup(function () {
+        ageLimit();
+
+    });
+
+    function emailValidChech(){
+      debugger;
+        var regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        var panid =$("#id_email").val();
+            if (regex.test(panid)) {
+                $("#id_email").css('border','solid 1px green');
+                $("#id_email").focus();
+
+            } else {
+               $("#id_email").addClass('is_invalid');
+                return false;
+            }
+    }
+
+
+
+    $('#id_email').keyup(function () {
+      emailValidChech();
+    });
+
+
+
+
+
+
+});
+
+
+</script>
+<script>
+  function btnHandle(gcity){
+      debugger;
+      $('#id_city').val(gcity.innerText);
+      $("#allCity").hide();
+      }
+
+  $('#id_city').keyup(function () {
+    selectCity =$('#id_city').val();
+    $("#allCity").show()
+    $("#allCity").html('');
+      $.ajax({
+            url:"{% url 'getCities'%}",
+            type:"get",
+
+            data:{selectCity:selectCity},
+            success:function(data){
+
+              for (i=0; i<=5; i++){
+                $("#allCity").append('<div class="citylist" onclick="btnHandle(this)">'+data[i].fields.name+'</div>')
+                   }
+
+
+            }
+
+      });
+
+
+    });
+</script>
+</body>
+</html>
